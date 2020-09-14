@@ -41,3 +41,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
           cname: isdanback.com
+
+      - run: curl -X POST \
+          -F "id=https://isdanback.com/" \
+          -F "scrape=true" \
+          -F "access_token=${{ secrets.FB_APP_ID }}|${{ secrets.FB_APP_SECRET }}" \
+          "https://graph.facebook.com"
