@@ -53,10 +53,7 @@ export default function IsDanBack() {
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta
-          property="og:url"
-          content="https://isdanback.com/hesnotbackyet.png"
-        />
+        <meta property="og:url" content="https://isdanback.com" />
       </Head>
       <div className="lead">
         <header>
