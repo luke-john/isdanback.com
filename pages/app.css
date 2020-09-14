@@ -13,7 +13,7 @@ body {
   body {
     --body-background-color: #000000;
     --lead-background-color: #ffffff;
-    --lead-question-color: #3e3e3e;
+    --lead-question-color: #efefef;
     --lead-answer-color: #000000;
     --lead-supplementary-color: #363636;
   }
@@ -28,7 +28,6 @@ body {
 }
 
 .lead .question {
-  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 36px;
@@ -39,7 +38,6 @@ body {
 }
 
 .lead .answer {
-  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 48px;
@@ -49,7 +47,6 @@ body {
 }
 
 .lead .supplementary {
-  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
