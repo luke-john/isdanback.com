@@ -31,7 +31,7 @@ export default function IsDanBack() {
   const monthsText = `${pluraliseDatePart(
     daysMonthYearsDiff.months,
     "month"
-  )}, `;
+  )} and `;
   const daysText = pluraliseDatePart(
     Math.floor(daysMonthYearsDiff.days),
     "day"
