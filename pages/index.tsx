@@ -19,25 +19,40 @@ export const daysMonthYearsDiff = dansReturnDate.diff(nowDate, [
   "days",
 ]);
 
+function pluraliseDatePart(part: number, description: string) {
+  return `${part} ${description}${part !== 1 ? "s" : ""}`;
+}
+
+function getHumanDuration(years: number, months: number, days: number) {
+  if (years === 0 && months === 0) {
+    return pluraliseDatePart(days, "day");
+  }
+
+  if (years === 0) {
+    if (days === 0) {
+      return `${pluraliseDatePart(months, "month")}`;
+    }
+
+    return `${pluraliseDatePart(months, "month")} and ${pluraliseDatePart(
+      days,
+      "day"
+    )}`;
+  }
+
+  if (months === 0) {
+    return pluraliseDatePart(days, "day");
+  }
+}
+
 export default function IsDanBack() {
   const answerMessage = danIsFlyingBack
     ? "Yes Dan flew back 🎉🎉🎉🎉."
     : "Nope, Dans not home yet 😔.";
 
-  function pluraliseDatePart(part: number, description: string) {
-    return `${part} ${description}${part > 1 ? "s" : ""}`;
-  }
-  const yearsText = `${pluraliseDatePart(daysMonthYearsDiff.years, "year")}, `;
-  const monthsText = `${pluraliseDatePart(
-    daysMonthYearsDiff.months,
-    "month"
-  )} and `;
-  const daysText = pluraliseDatePart(
-    Math.floor(daysMonthYearsDiff.days),
-    "day"
-  );
+  const { years, months, days } = daysMonthYearsDiff;
+  const humanDuration = getHumanDuration(years, months, days);
 
-  const supplementary = `Dan flies back in ${yearsText}${monthsText}${daysText}.`;
+  const supplementary = `Dan flies back in ${humanDuration}.`;
 
   return (
     <>
