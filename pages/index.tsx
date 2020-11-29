@@ -2,6 +2,17 @@ import React from "react";
 import { DateTime } from "luxon";
 import Head from "next/head";
 
+const durations = [
+  [14, "The time it took to build the berlin wall"],
+  [27, "The time it takes for the moon to rotate the earth"],
+  [35, "The amount of time Darwin spent in the Galapagos islands"],
+  [120, "The time it takes to grow a prizewinner pumpkin"],
+  [128, "The shortest amount of time they think it would take to get to mars"],
+  [225, "The time it takes for venus to orbit the sun"],
+  [280, "The average length of human gestation"],
+  [365, "The time it takes for the earth to orbit the sun"],
+];
+
 export const dansReturnDate = DateTime.fromObject({
   day: 24,
   month: 12,
@@ -18,16 +29,11 @@ export const daysMonthYearsDiff = dansReturnDate.diff(nowDate, [
   "months",
   "days",
 ]);
-
 function pluraliseDatePart(part: number, description: string) {
   return `${part} ${description}${part !== 1 ? "s" : ""}`;
 }
 
 function getHumanDuration(years: number, months: number, days: number) {
-  if (years === 0 && months === 0) {
-    return pluraliseDatePart(days, "day");
-  }
-
   if (years === 0) {
     if (days === 0) {
       return `${pluraliseDatePart(months, "month")}`;
@@ -40,8 +46,20 @@ function getHumanDuration(years: number, months: number, days: number) {
   }
 
   if (months === 0) {
-    return pluraliseDatePart(days, "day");
+    if (years === 0) {
+      return pluraliseDatePart(days, "day");
+    }
+
+    return `${pluraliseDatePart(years, "year")} and ${pluraliseDatePart(
+      days,
+      "day"
+    )}`;
   }
+
+  return `${pluraliseDatePart(years, "year")}, ${pluraliseDatePart(
+    months,
+    "months"
+  )} and ${pluraliseDatePart(days, "day")}`;
 }
 
 export default function IsDanBack() {
@@ -50,7 +68,7 @@ export default function IsDanBack() {
     : "Nope, Dans not home yet 😔.";
 
   const { years, months, days } = daysMonthYearsDiff;
-  const humanDuration = getHumanDuration(years, months, days);
+  const humanDuration = getHumanDuration(years, months, Math.floor(days));
 
   const supplementary = `Dan flies back in ${humanDuration}.`;
 
