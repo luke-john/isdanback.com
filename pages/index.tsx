@@ -70,7 +70,7 @@ export default function IsDanBack() {
   const { years, months, days } = daysMonthYearsDiff;
   const humanDuration = getHumanDuration(years, months, Math.floor(days));
 
-  const supplementary = `Dan flies back in ${humanDuration}*. (Possibility of an extra year if covid lockdowns continue)`;
+  const supplementary = `Dan flies back in ${humanDuration}.`;
 
   return (
     <>
